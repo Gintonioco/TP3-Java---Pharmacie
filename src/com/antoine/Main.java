@@ -120,7 +120,8 @@ public class Main {
 				System.out.println("Voici les information du medicament avec l'identifiant : " + id + "\n " + ListeMedicament.get(i));
 				System.out.println("Son stock est de " + ListeMedicament.get(i).getStock());
 				System.out.println("Veuillez saisir la quantité achetée par le client ");
-				ListeMedicament.get(i).achat(sc.nextInt());
+				int quantiteAchete = sc.nextInt();
+				ListeMedicament.get(i).achat(quantiteAchete);
 				System.out.println("Le stock de" + ListeMedicament.get(i).getNom() + " est désormais à " + ListeMedicament.get(i).getStock());
 				
 				
@@ -137,15 +138,14 @@ public class Main {
 						{
 							System.out.println("Saisissez le montant payé par le client");
 							double montant = sc.nextDouble();
-							
-							//ListeClient.get(j).setCredit() = ListeMedicament.get(i).getPrix() - montant;
+							double aCrediter;
+							aCrediter = (ListeMedicament.get(i).getPrix()*quantiteAchete) - montant;
+							ListeClient.get(j).setCredit(aCrediter);
+							System.out.println("Le crédit du client est de " + ListeClient.get(j).getCredit() + "€");
 						}
 					}
 				}
-				
-				
-				
-				
+
 			}
 		}
 		
@@ -169,14 +169,38 @@ public class Main {
 	{
 		System.out.println("Saisissez le nom du client :");
 		String nom = sc.next();
+		boolean verifClient = false;
 		for(int i = 0; i < ListeClient.size(); i++)
 		{
-			if(nom == ListeClient.get(i).getNom())
+			if(nom.equals(ListeClient.get(i).getNom()))
 			{
-				System.out.println("Le client " + ListeClient.get(i).getNom() + " existe bien");
+			System.out.println("Le client " + ListeClient.get(i).getNom() + " existe bien");
+			verifClient = true;
 			}
 		}
-		System.out.println("Il n'y a aucun client du nom de " + nom);
-	
+		if(verifClient == false)
+		{
+			System.out.println("Il n'y a aucun client du nom de " + nom);
+		}
+		
 }
+	
+//	public static void lireMedicament()
+//	{
+//		System.out.println("Saisissez le nom du client :");
+//		String nom = sc.next();
+//		boolean verifClient = false;
+//		for(int i = 0; i < ListeClient.size(); i++)
+//		{
+//			if(nom.equals(ListeClient.get(i).getNom()))
+//			{
+//			System.out.println("Le client " + ListeClient.get(i).getNom() + " existe bien");
+//			verifClient = true;
+//			}
+//		}
+//		if(verifClient == false)
+//		{
+//			System.out.println("Il n'y a aucun client du nom de " + nom);
+//		}
+		
 }

@@ -44,8 +44,8 @@ public class Client {
 			return credit;
 		}
 
-		public void setCredit(double montant) {
-			this.credit = credit;
+		public void setCredit(double aCrediter) {
+			this.credit += aCrediter;
 		}
 		
 	//toString
